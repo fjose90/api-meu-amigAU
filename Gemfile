@@ -36,7 +36,7 @@ gem "thruster", require: false
 # gem "rack-cors"
 
 # Para variáveis de ambiente
-gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
+gem "dotenv-rails", "~> 3.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
