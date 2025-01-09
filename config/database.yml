@@ -10,28 +10,27 @@ default: &default
 
 development:
   <<: *default
-  database: api_meu_amig_au1_development
+  database: api_meu_amig_au_development
 
 test:
   <<: *default
-  database: api_meu_amig_au1_test
+  database: api_meu_amig_au_test
 
 production:
   primary: &primary_production
     <<: *default
-    url: api
-    database: api_meu_amig_au1_production
-    username: api_meu_amig_au1
-    password: <%= ENV["API_MEU_AMIG_AU1_DATABASE_PASSWORD"] %>
+    database: api_meu_amig_au_production
+    username: api_meu_amig_au
+    password: <%= ENV["API_MEU_AMIG_AU_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: api_meu_amig_au1_production_cache
+    database: api_meu_amig_au_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: api_meu_amig_au1_production_queue
+    database: api_meu_amig_au_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: api_meu_amig_au1_production_cable
+    database: api_meu_amig_au_production_cable
     migrations_paths: db/cable_migrate
