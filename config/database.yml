@@ -18,8 +18,7 @@ test:
 production:
     primary: &primary_production
         <<: *default
-    url: <%= ENV.fetch("DATABASE_URL") %>
-
+        url: <%= ENV.fetch("DATABASE_URL") %>
     cache:
         <<: *primary_production
         database: api_meu_amig_au_production_cache
