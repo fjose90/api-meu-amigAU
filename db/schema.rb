@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_15_122542) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_16_193424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,8 +24,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_15_122542) do
     t.date "birth_date", null: false
     t.string "phone"
     t.string "email", null: false
-    t.enum "person_type", default: "physical", null: false, enum_type: "person_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "person_type", default: 1, null: false
+  end
+
+  create_table "pgmigrations", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+    t.datetime "run_on", precision: nil, null: false
   end
 end
