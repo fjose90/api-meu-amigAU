@@ -7,7 +7,7 @@ class CreatePeople < ActiveRecord::Migration[8.0]
       t.date :birth_date, null: false
       t.string :phone
       t.string :email, null: false
-      t.interger :person_type, null: false, default: 1 # 1 para 'physical', 2 para 'legal'
+      t.integer :person_type, null: false, default: 1 # 1 para 'physical', 2 para 'legal'
 
       t.timestamps
     end
