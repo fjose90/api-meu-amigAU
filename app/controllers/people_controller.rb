@@ -5,12 +5,12 @@ class PeopleController < ApplicationController
   def index
     @people = Person.all
 
-    render json: @people
+    render json: @people.map { |person| PersonSerializer.new(person).as_json }
   end
 
   # GET /people/1
   def show
-    render json: @person
+    render json: PersonSerializer.new(@person).as_json
   end
 
   # POST /people
@@ -18,7 +18,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
 
     if @person.save
-      render json: @person, status: :created, location: @person
+      render json: PersonSerializer.new(@person).as_json, status: :created, location: @person
     else
       render json: @person.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   def update
     if @person.update(person_params)
-      render json: @person
+      render json: PersonSerializer.new(@person).as_json
     else
       render json: @person.errors, status: :unprocessable_entity
     end
