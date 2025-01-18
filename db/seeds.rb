@@ -1,8 +1,8 @@
-# Este arquivo deve garantir a existência dos registros necessários para rodar a aplicação em todos os ambientes (produção,
-# desenvolvimento, teste). O código aqui deve ser idempotente para que possa ser executado em qualquer ponto de qualquer ambiente.
-# Os dados podem então ser carregados com o comando bin/rails db:seed (ou criados junto com o banco de dados com db:setup).
+    # Este arquivo deve garantir a existência dos registros necessários para rodar a aplicação em todos os ambientes (produção,
+    # desenvolvimento, teste). O código aqui deve ser idempotente para que possa ser executado em qualquer ponto de qualquer ambiente.
+    # Os dados podem então ser carregados com o comando bin/rails db:seed (ou criados junto com o banco de dados com db:setup).
 
-if Rails.env.development? || Rails.env.test?
+
     puts "Seeding data for the #{Rails.env} environment..."
 
     Person.destroy_all
@@ -21,4 +21,3 @@ if Rails.env.development? || Rails.env.test?
     end
 
     puts "Seeded #{Person.count} people."
-end
