@@ -4,7 +4,7 @@ class Person < ApplicationRecord
 
     validates :name,
     presence: true,
-    length: { minimum: 5,maximum: 100 }
+    length: { minimum: 5, maximum: 100 }
 
     validates :cpf_cnpj, presence: true, format: {
     with: /\A\d{11,14}\z/,
