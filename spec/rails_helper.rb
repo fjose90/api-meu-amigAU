@@ -16,7 +16,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
 # Impede a truncação do banco de dados se o ambiente for de produção
-abort("O ambiente Rails está em modo de produção!") if Rails.env.production?
+abort('O ambiente Rails está em modo de produção!') if Rails.env.production?
 
 require 'rspec/rails'
 require 'database_cleaner/active_record' # Adicionando a gem database_cleaner
@@ -34,9 +34,9 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 
-# Adicionar suporte adicional ao RSpec, como o carregamento de arquivos em `spec/support`.
-# Certifique-se de que a pasta `support` contém arquivos como `factory_bot.rb`.
-Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
+  # Adicionar suporte adicional ao RSpec, como o carregamento de arquivos em `spec/support`.
+  # Certifique-se de que a pasta `support` contém arquivos como `factory_bot.rb`.
+  Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
 
   # Se você não estiver usando ActiveRecord ou preferir não rodar cada exemplo dentro de uma transação, remova a linha abaixo ou atribua false em vez de true
   # config.use_transactional_fixtures = true

@@ -7,9 +7,8 @@ FactoryBot.define do
     email { Faker::Internet.email }
     person_type { %i[physical legal].sample }
 
-
-    factory :invalid_hero do
-        name { nil }
+    factory :invalid_person do
+      name { nil }
     end
   end
 end
