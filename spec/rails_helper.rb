@@ -32,6 +32,8 @@ RSpec.configure do |config|
   # Remova esta linha se você não estiver usando ActiveRecord ou fixtures do ActiveRecord
   config.fixture_paths = Rails.root.join('spec/fixtures')
 
+  config.include FactoryBot::Syntax::Methods
+
 # Adicionar suporte adicional ao RSpec, como o carregamento de arquivos em `spec/support`.
 # Certifique-se de que a pasta `support` contém arquivos como `factory_bot.rb`.
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
