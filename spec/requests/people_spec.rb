@@ -1,20 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "/people", type: :request do
-  let(:valid_attributes) {
-    attributes_for :person  }
-
-  let(:invalid_attributes) {
-     attributes_for :invalid_person
-  }
-
-  let(:valid_headers) {
-    {}
-  }
+  let!(:person) { create(:person) }
+  let(:valid_attributes) { attributes_for :person }
+  let(:invalid_attributes) { attributes_for :invalid_person }
+  let(:valid_headers) { { "Content-Type" => "application/json" } }
 
   describe "GET /index" do
     it "renders a successful response" do
-      Person.create! valid_attributes
       get people_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
@@ -22,7 +15,6 @@ RSpec.describe "/people", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      person = Person.create! valid_attributes
       get person_url(person), as: :json
       expect(response).to be_successful
     end
@@ -49,7 +41,7 @@ RSpec.describe "/people", type: :request do
       it "does not create a new Person" do
         expect {
           post people_url,
-               params: { person: invalid_attributes }, as: :json
+               params: { person: invalid_attributes }, headers: valid_headers, as: :json
         }.to change(Person, :count).by(0)
       end
 
@@ -64,20 +56,16 @@ RSpec.describe "/people", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-       attributes_for :hero
-      }
+      let(:new_attributes) { attributes_for :person }
 
       it "updates the requested person" do
-        person = Person.create! valid_attributes
         patch person_url(person),
               params: { person: new_attributes }, headers: valid_headers, as: :json
         person.reload
-        skip("Add assertions for updated state")
+        expect(person.name).to eq(new_attributes[:name])
       end
 
       it "renders a JSON response with the person" do
-        person = Person.create! valid_attributes
         patch person_url(person),
               params: { person: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
@@ -87,7 +75,6 @@ RSpec.describe "/people", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the person" do
-        person = Person.create! valid_attributes
         patch person_url(person),
               params: { person: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
