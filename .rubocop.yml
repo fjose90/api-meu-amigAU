@@ -1,8 +1,39 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+# Requer o RuboCop Rails para adicionar regras específicas para projetos Rails
+require:
+    - rubocop-rails
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+AllCops:
+    # Define a versão alvo do Ruby
+    TargetRubyVersion: 3.0
+
+    # Habilita novas Cops automaticamente
+    NewCops: enable
+
+    # Desabilita sugestões de extensões
+    SuggestExtensions: false
+
+    # Exclui diretórios e arquivos específicos da verificação do RuboCop
+    Exclude:
+        - "bin/**/*"
+        - "vendor/**/*"
+        - "db/**/*"
+        - "config/**/*"
+        - "script/**/*"
+        - "spec/rails_helper.rb"
+
+# Habilita a verificação de documentação
+Documentation:
+    Enabled: false
+
+# Desabilita a verificação de comentários de string literal congelada
+Style/FrozenStringLiteralComment:
+    Enabled: false
+
+# Exclui arquivos de teste da verificação de comprimento de bloco
+Metrics/BlockLength:
+    Exclude:
+        - "spec/**/*.rb"
+
+# Define o comprimento máximo de linha
+Layout/LineLength:
+    Max: 120

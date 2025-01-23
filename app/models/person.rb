@@ -12,7 +12,7 @@ class Person < ApplicationRecord
             uniqueness: true,
             format: {
               with: /\A\d{11,14}\z/,
-              message: 'must be 11 or 14 digits'
+              message: "must be 11 or 14 digits"
             }
 
   validates :birth_date,
@@ -22,7 +22,7 @@ class Person < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false },
             format: { with: URI::MailTo::EMAIL_REGEXP,
-                      message: 'must be a valid email address' }
+                      message: "must be a valid email address" }
 
   validates :person_type,
             presence: true
@@ -30,5 +30,5 @@ class Person < ApplicationRecord
   validates :phone,
             presence: true,
             format: { with: /\A\(\d{2}\) \d{4,5}-\d{4}\z/,
-                      message: 'deve estar no formato (XX) XXXX-XXXX ou (XX) XXXXX-XXXX' }
+                      message: "deve estar no formato (XX) XXXX-XXXX ou (XX) XXXXX-XXXX" }
 end

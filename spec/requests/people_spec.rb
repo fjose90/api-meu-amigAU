@@ -20,36 +20,36 @@ RSpec.describe "/people", type: :request do
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Person" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Person' do
+        expect do
           post people_url,
                params: { person: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Person, :count).by(1)
+        end.to change(Person, :count).by(1)
       end
 
-      it "renders a JSON response with the new person" do
+      it 'renders a JSON response with the new person' do
         post people_url,
              params: { person: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Person" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Person' do
+        expect do
           post people_url,
                params: { person: invalid_attributes }, headers: valid_headers, as: :json
         }.to change(Person, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new person" do
+      it 'renders a JSON response with errors for the new person' do
         post people_url,
              params: { person: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
@@ -66,29 +66,31 @@ RSpec.describe "/people", type: :request do
       end
 
       it "renders a JSON response with the person" do
+
         patch person_url(person),
               params: { person: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
-
+    
     context "with invalid parameters" do
       it "renders a JSON response with errors for the person" do
+
         patch person_url(person),
               params: { person: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested person" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested person' do
       person = Person.create! valid_attributes
-      expect {
+      expect do
         delete person_url(person), headers: valid_headers, as: :json
-      }.to change(Person, :count).by(-1)
+      end.to change(Person, :count).by(-1)
     end
   end
 end

@@ -6,8 +6,7 @@ FactoryBot.define do
     phone { Faker::PhoneNumber.cell_phone }
     email { Faker::Internet.email }
     person_type { %i[physical legal].sample }
-
-
+    
     factory :invalid_person do
         name { nil }
         cpf_cnpj { nil }
