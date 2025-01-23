@@ -8,8 +8,13 @@ FactoryBot.define do
     person_type { %i[physical legal].sample }
 
 
-    factory :invalid_hero do
+    factory :invalid_person do
         name { nil }
+        cpf_cnpj { nil }
+        birth_date { nil }
+        phone { nil }
+        email { nil }
+        person_type { nil }
     end
   end
 end
